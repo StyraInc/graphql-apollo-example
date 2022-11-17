@@ -3,7 +3,7 @@
 This directory helps provide fine-grained, policy-based control over who
 can run which GraphQL API queries.
 
-A matching tutorial is expected to be available soon.
+A [matching tutorial is available](https://www.openpolicyagent.org/docs/latest/graphql-api-authorization/).
 
 ## Contents
 

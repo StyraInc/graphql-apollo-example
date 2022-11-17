@@ -19,6 +19,14 @@ A matching tutorial is expected to be available soon.
 
 ## Setup
 
+Download the [latest opa binary](https://www.openpolicyagent.org/docs/latest/#running-opa) for your platform. 
+
+For arm64 based macos:
+```bash
+curl -L -o /usr/local/bin/opa https://github.com/open-policy-agent/opa/releases/download/v0.46.1/opa_darwin_arm64_static
+chmod 755 /usr/local/bin/opa
+```
+
 The GraphQL application, the bundle server, and OPA all run in docker-containers.
 For convenience, we included a docker-compose file, so you'll want
 [docker-compose](https://docs.docker.com/compose/install/) installed.

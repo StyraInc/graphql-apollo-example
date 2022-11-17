@@ -46,3 +46,17 @@ To instead use the example with JSON Web Tokens, use the following make commands
 make             # build the containers with docker
 make up-token    # start the containers with docker-compose
 ```
+
+To verify that the system is working as expected define a helper function and use it to submit a graphql query as follows
+
+```bash
+❯ gql-query() {
+   curl --user "$1" -H "Content-Type: application/json" "$2" --data-ascii "$3"
+}
+
+❯ gql-query alice:password "localhost:5000/" '{"query":"query { employeeByID(id: \"alice\") { salary }}"}'
+```
+the response back should be
+```
+{"data":{"employeeByID":{"salary":3664}}}
+```

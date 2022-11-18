@@ -21,7 +21,7 @@ A [matching tutorial is available](https://www.openpolicyagent.org/docs/latest/g
 
 Download the [latest opa binary](https://www.openpolicyagent.org/docs/latest/#running-opa) for your platform. 
 
-For exmaple - for an arm64 based macos:
+For example - for an arm64 based macos and v0.46.1 is the latest release:
 ```bash
 curl -L -o /usr/local/bin/opa https://github.com/open-policy-agent/opa/releases/download/v0.46.1/opa_darwin_arm64_static
 chmod 755 /usr/local/bin/opa
@@ -50,11 +50,11 @@ make up-token    # start the containers with docker-compose
 To verify that the application is working as expected, you can define a helper function and use it to submit a graphql query as follows:
 
 ```bash
-❯ gql-query() {
+gql-query() {
    curl --user "$1" -H "Content-Type: application/json" "$2" --data-ascii "$3"
 }
 
-❯ gql-query alice:password "localhost:5000/" '{"query":"query { employeeByID(id: \"alice\") { salary }}"}'
+gql-query alice:password "localhost:5000/" '{"query":"query { employeeByID(id: \"alice\") { salary }}"}'
 ```
 the response back should look like the following
 ```

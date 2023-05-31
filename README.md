@@ -3,7 +3,7 @@
 This directory helps provide fine-grained, policy-based control over who
 can run which GraphQL API queries.
 
-A matching tutorial is expected to be available soon.
+A [matching tutorial is available](https://www.openpolicyagent.org/docs/latest/graphql-api-authorization/).
 
 ## Contents
 
@@ -18,6 +18,14 @@ A matching tutorial is expected to be available soon.
       the docker compose environment.
 
 ## Setup
+
+Download the [latest opa binary](https://www.openpolicyagent.org/docs/latest/#running-opa) for your platform. 
+
+For example - for an arm64 based macos and v0.46.1 is the latest release:
+```bash
+curl -L -o /usr/local/bin/opa https://github.com/open-policy-agent/opa/releases/download/v0.46.1/opa_darwin_arm64_static
+chmod 755 /usr/local/bin/opa
+```
 
 The GraphQL application, the bundle server, and OPA all run in docker-containers.
 For convenience, we included a docker-compose file, so you'll want
@@ -37,4 +45,18 @@ To instead use the example with JSON Web Tokens, use the following make commands
 ```
 make             # build the containers with docker
 make up-token    # start the containers with docker-compose
+```
+
+To verify that the application is working as expected, you can define a helper function and use it to submit a graphql query as follows:
+
+```bash
+gql-query() {
+   curl --user "$1" -H "Content-Type: application/json" "$2" --data-ascii "$3"
+}
+
+gql-query alice:password "localhost:5000/" '{"query":"query { employeeByID(id: \"alice\") { salary }}"}'
+```
+the response back should look like the following
+```
+{"data":{"employeeByID":{"salary":3664}}}
 ```
